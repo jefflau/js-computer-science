@@ -64,13 +64,11 @@ function quickSort(array){
     return array
   }
 
-  let pivotPos = array.length - 1
-  let pivot = array[pivotPos]
+  let pivot = array[array.length - 1]
   let leftList = []
   let rightList = []
-  let leftListSorted, rightListSorted
 
-  for(let i = 0; i < pivotPos; i++){
+  for(let i = 0; i < array.length - 1; i++){
     if(array[i] < pivot) {
       leftList.push(array[i])
     } else {
@@ -78,8 +76,5 @@ function quickSort(array){
     }
   }
 
-  leftListSorted = quickSort(leftList)
-  rightListSorted = quickSort(rightList)
-
-  return [...leftListSorted, pivot, ...rightListSorted]
+  return [...quickSort(leftList), pivot, ...quickSort(rightList)]
 }
