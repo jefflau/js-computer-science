@@ -25,9 +25,9 @@ function mergeSort(array){
   if(array.length < 2){
     return array
   }
-
-  let leftArray = array.slice(0, Math.ceil(array.length/2))
-  let rightArray = array.slice(Math.ceil(array.length/2))
+  let middle = Math.ceil(array.length/2)
+  let leftArray = array.slice(0, middle)
+  let rightArray = array.slice(middle)
   
   let sortedLArray = mergeSort(leftArray)
   let sortedRArray = mergeSort(rightArray)
@@ -35,14 +35,14 @@ function mergeSort(array){
   function merge(leftArray, rightArray){
     let Lp = 0
     let Rp = 0
-    let outputArray = []
+    const outputArray = []
     while(outputArray.length < leftArray.length + rightArray.length){
       
       if(Lp === leftArray.length) {
-        outputArray = [...outputArray, rightArray[Rp]]
+        outputArray.push(leftArray[Lp])
         Rp++
       } else if(Rp === rightArray.length) {
-        outputArray = [...outputArray, leftArray[Lp]]
+        outputArray.push(rightArray[Rp])
         Lp++
       } else if(leftArray[Lp] < rightArray[Rp]){
         outputArray.push(leftArray[Lp])
@@ -77,4 +77,8 @@ function quickSort(array){
   }
 
   return [...quickSort(leftList), pivot, ...quickSort(rightList)]
+}
+
+array.Prototype.sort = function(callback){
+  //implement array.sort
 }
